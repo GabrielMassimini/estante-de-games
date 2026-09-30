@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Tokens do tema: viram classes do Tailwind (ex.: bg-surface, text-muted, font-display). */
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Chakra Petch", "Inter", system-ui, sans-serif;
+
+  --color-bg: #0b0e14;
+  --color-surface: #131823;
+  --color-surface-2: #1b2130;
+  --color-line: #273044;
+  --color-text: #e7eaf3;
+  --color-muted: #9aa4b8;
+  --color-accent: #8b5cf6;
+  --color-accent-2: #22d3ee;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-screen bg-bg font-sans text-text antialiased;
+    background-image:
+      radial-gradient(60rem 30rem at 10% -10%, rgb(139 92 246 / 0.18), transparent 60%),
+      radial-gradient(50rem 25rem at 100% 0%, rgb(34 211 238 / 0.1), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  /* Foco bem visível para quem navega pelo teclado. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-2;
+  }
+}
