@@ -1,0 +1,57 @@
+name: Deploy no GitHub Pages
+
+on:
+  # Publica sempre que entrar algo novo na main
+  push:
+    branches: [main]
+  # Permite rodar na mão pela aba Actions
+  workflow_dispatch:
+
+# Permissões que o Pages precisa para receber o build
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Se dois pushes acontecerem seguidos, o último é o que vale
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixa o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Instala o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Instala as dependências
+        run: npm ci
+
+      - name: Gera a pasta dist
+        run: npm run build
+
+      - name: Prepara o Pages
+        uses: actions/configure-pages@v5
+
+      - name: Envia a pasta dist
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publica no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
