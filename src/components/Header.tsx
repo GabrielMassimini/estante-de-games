@@ -5,7 +5,7 @@ export function Header() {
     <header className="border-b border-line bg-bg/80 backdrop-blur">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
         <div className="flex items-center gap-3">
-          <img src="/favicon.svg" alt="" className="size-10" />
+          <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" className="size-10" />
           <div>
             <h1 className="font-display text-xl font-bold tracking-wide sm:text-2xl">
               Minha Estante de <span className="text-accent-2">Games</span>
