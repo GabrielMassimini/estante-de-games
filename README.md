@@ -93,6 +93,10 @@ npm run lint    # analisa o código
 - Criar um tema com variáveis no Tailwind e um layout responsivo com Grid
 - Organizar as pastas de um projeto pensando em como ele vai crescer
 
+## Uso de IA
+
+O código deste projeto foi escrito por mim. Usei IA (Claude) para tirar dúvidas e revisar o que eu fiz.
+
 ## Próximos passos
 
 O projeto está sendo construído em etapas:
